@@ -5,5 +5,5 @@ import lombok.*;
 @Data @NoArgsConstructor @AllArgsConstructor @EqualsAndHashCode
 public class CoThaoTacPK implements Serializable {
     private String yeuCau;
-    private String thaoTac;
+    private String id_thao_tac;
 }

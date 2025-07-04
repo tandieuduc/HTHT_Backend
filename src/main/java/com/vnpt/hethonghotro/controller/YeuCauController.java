@@ -1,6 +1,10 @@
 package com.vnpt.hethonghotro.controller;
 
+<<<<<<< HEAD
 import com.vnpt.hethonghotro.dto.HanhDongRequest;
+=======
+import com.vnpt.hethonghotro.dto.ThaoTacRequest;
+>>>>>>> origin/tt-dev
 import com.vnpt.hethonghotro.service.YeuCauService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,20 +18,20 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class YeuCauController {
 
+
     private final YeuCauService yeuCauService;
 
-    @PostMapping("/{id}/hanh-dong")
+    @PostMapping("/{id}/thao-tac")
     public ResponseEntity<?> xuLyHanhDong(
             @PathVariable String id,
-            @Valid @RequestBody HanhDongRequest request,
-            Authentication authentication // Spring Security sẽ tự động inject đối tượng này
+            @Valid @RequestBody ThaoTacRequest request,
+            Authentication authentication
     ) {
         try {
-            // Lấy username từ người dùng đã được xác thực
             String username = authentication.getName();
             yeuCauService.xuLyHanhDong(id, request, username);
 
-            String message = "Hành động '" + request.getHanhDong() + "' đã được thực hiện thành công.";
+            String message = "Thao tác '" + request.getThao_tac() + "' đã được thực hiện thành công.";
             return ResponseEntity.ok(Map.of("message", message));
 
         } catch (Exception e) {

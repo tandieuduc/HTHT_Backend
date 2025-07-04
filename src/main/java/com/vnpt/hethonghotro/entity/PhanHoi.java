@@ -13,13 +13,13 @@ public class PhanHoi {
     private String id;
 
     @Column(name = "response_content", columnDefinition = "TEXT", nullable = false)
-    private String responseContent;
+    private String response_content;
 
     @Column(name = "sent_at", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime sentAt;
+    private LocalDateTime sent_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_yeu_cau")
-    private YeuCau yeuCau;
+    private YeuCau id_yeu_cau;
 }

@@ -44,7 +44,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-
             // *** THAY ĐỔI QUAN TRỌNG: Đọc quyền trực tiếp từ token ***
             if (!jwtUtil.isTokenExpired(jwt)) {
                 List<String> roles = jwtUtil.extractRoles(jwt);
@@ -52,10 +51,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
 
-                // Không cần UserDetails nữa, chúng ta có đủ thông tin từ token
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        username, null, authorities); // Dùng username và authorities từ token
 
+                // Không cần UserDetails nữa, chúng ta có đủ thông tin từ token
+//                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+//                        username, null, authorities); // Dùng username và authorities từ token
+
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        username, null, authorities);
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);

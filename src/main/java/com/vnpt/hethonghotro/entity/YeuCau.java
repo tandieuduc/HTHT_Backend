@@ -13,19 +13,20 @@ public class YeuCau {
     private String id;
 
     @Column(name = "group_name")
-    private String groupName;
+    private String group_name;
 
     @Column(name = "sender_name")
-    private String senderName;
+    private String sender_name;
 
     @Column(name = "request_content", columnDefinition = "TEXT")
-    private String requestContent;
+    private String request_content;
 
     @Column(name = "receipt_at", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime receiptAt;
+    private LocalDateTime receipt_at;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_he_thong", nullable = false)
-    private HeThong heThong;
+    private HeThong id_he_thong;
+>>>>>>> origin/tt-dev
 }

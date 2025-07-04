@@ -8,5 +8,5 @@ public class XuLyYeuCau {
     @Id @ManyToOne @JoinColumn(name = "username", referencedColumnName = "username")
     private NguoiDung username;
     @Id @ManyToOne @JoinColumn(name = "id_yeu_cau", referencedColumnName = "id")
-    private YeuCau yeuCau;
+    private YeuCau id_yeu_cau;
 }

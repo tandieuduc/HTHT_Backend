@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CoThaoTacRepository extends JpaRepository<CoThaoTac, CoThaoTacPK> {
-    List<CoThaoTac> findByYeuCauId(String yeuCauId);
+
+    List<CoThaoTac> findByYeuCau_Id(String yeuCauId);
 }
