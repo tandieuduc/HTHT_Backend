@@ -8,4 +8,8 @@ public class ThaoTacRequest {
     @NotBlank(message = "Hành động không được để trống")
     private String thao_tac;
     private String noi_dung_phan_hoi;
+
+    public String getThao_tac() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

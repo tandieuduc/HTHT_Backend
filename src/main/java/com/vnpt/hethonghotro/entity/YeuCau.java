@@ -28,5 +28,4 @@ public class YeuCau {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_he_thong", nullable = false)
     private HeThong id_he_thong;
->>>>>>> origin/tt-dev
 }

@@ -1,20 +1,26 @@
 package com.vnpt.hethonghotro.controller;
 
-import com.vnpt.hethonghotro.dto.RoleDTO.RoleDTO;
-import com.vnpt.hethonghotro.dto.RoleDTO.RoleSaveDTO;
-import com.vnpt.hethonghotro.dto.RoleDTO.RoleUpdateDTO;
-import com.vnpt.hethonghotro.entity.VaiTro;
-import com.vnpt.hethonghotro.repository.VaiTroRepository;
-import com.vnpt.hethonghotro.service.RoleService;
-import jakarta.validation.Valid;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import com.vnpt.hethonghotro.dto.RoleDTO.RoleDTO;
+import com.vnpt.hethonghotro.dto.RoleDTO.RoleSaveDTO;
+import com.vnpt.hethonghotro.dto.RoleDTO.RoleUpdateDTO;
+import com.vnpt.hethonghotro.repository.VaiTroRepository;
+import com.vnpt.hethonghotro.service.RoleService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/role")
@@ -26,13 +32,13 @@ public class RoleController {
     @Autowired
     private VaiTroRepository vaiTroRepository;
 
-    @GetMapping("/role-name")
-    public List<String> getAllVaiTroNames() {
-        return vaiTroRepository.findAll().stream()
-            .map(VaiTro::getName)
-            .filter(Objects::nonNull)
-            .collect(Collectors.toList());
-    }
+     @GetMapping("/role-name")
+     public List<String> getAllVaiTroNames() {
+         return vaiTroRepository.findAll().stream()
+             .map(VaiTro::getName)
+             .filter(Objects::nonNull)
+             .collect(Collectors.toList());
+     }
 
     @GetMapping
     public List<RoleDTO> getAllRole() {
