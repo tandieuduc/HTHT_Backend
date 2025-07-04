@@ -13,4 +13,7 @@ public interface VaiTroRepository extends JpaRepository<VaiTro, String> {
             "JOIN co_vai_tro cvt ON vt.id = cvt.id_vai_tro " +
             "WHERE cvt.username = :username", nativeQuery = true)
     List<VaiTro> findRolesByUsername(@Param("username") String username);
+
+    boolean existsByName(String name);
+    List<VaiTro> findByNameIn(List<String> names);
 }
