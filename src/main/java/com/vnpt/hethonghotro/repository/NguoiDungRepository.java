@@ -7,4 +7,8 @@ import java.util.Optional;
 public interface NguoiDungRepository extends JpaRepository<NguoiDung, String> {
     // Tìm người dùng theo username, trả về Optional để xử lý trường hợp không tìm thấy
     Optional<NguoiDung> findByUsername(String username);
+    boolean existsByEmail(String email);
+    boolean existsByPhone(String phone);
+    boolean existsByEmployeeId(String employeeId);
+    boolean existsByUsername(String username);
 }

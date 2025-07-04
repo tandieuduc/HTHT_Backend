@@ -1,15 +1,26 @@
 package com.vnpt.hethonghotro.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data; // Hoặc tự tạo Getters/Setters
+import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "nguoi_dung")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class NguoiDung {
 
     @Id
     @Column(name = "username", length = 50)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private String username;
 
     @Column(name = "password", nullable = false, length = 128)
@@ -27,17 +38,19 @@ public class NguoiDung {
     @Column(name = "phone", nullable = false, unique = true, length = 15)
     private String phone;
 
+    @Email
     @Column(name = "email", nullable = false, unique = true, length = 254)
     private String email;
 
     @Column(name = "address", nullable = false, columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "avatar", nullable = false, columnDefinition = "TEXT")
-    private String avatar;
+    @Lob
+    @Column(nullable = true)
+    private byte[] avatar;
 
-    @Column(name = "is_deleted", nullable = false)
-    private boolean isDeleted = false;
+    @Column(name = "state", nullable = false)
+    private Integer state = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_phong_ban", nullable = false)
@@ -46,4 +59,13 @@ public class NguoiDung {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_chuc_vu", nullable = false)
     private ChucVu chucVu;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "co_vai_tro",
+        joinColumns = @JoinColumn(name = "username"),
+        inverseJoinColumns = @JoinColumn(name = "id_vai_tro")
+    )
+
+    private Set<VaiTro> vaiTros = new HashSet<>();
 }
