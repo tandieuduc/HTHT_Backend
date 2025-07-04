@@ -23,7 +23,11 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+// .requestMatchers("/api/auth/**").permitAll() // Cho phép tất cả truy cập API đăng nhập
+//                        // --- THÊM DÒNG NÀY ---
+//                        .requestMatchers("/api/yeu-cau/**").hasAnyRole( "LÃNH ĐẠO", "KỸ THUẬT VIÊN", "QUẢN TRỊ VIÊN") // Chỉ KTV hoặc Admin được truy cập
+//                        // ---------------------
+//                        .anyRequest().authenticated() // Tất cả các request khác phải được xác thực
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
@@ -42,7 +46,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Cho phép frontend từ địa chỉ này truy cập
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
         // Cho phép các phương thức HTTP nào
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         // Cho phép các header nào
@@ -65,11 +69,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Cho phép tất cả truy cập API đăng nhập
-                        // --- THÊM DÒNG NÀY ---
-                        .requestMatchers("/api/yeu-cau/**").hasAnyRole( "LÃNH ĐẠO", "KỸ THUẬT VIÊN", "QUẢN TRỊ VIÊN") // Chỉ KTV hoặc Admin được truy cập
-                        // ---------------------
-                        .anyRequest().authenticated() // Tất cả các request khác phải được xác thực
+                    .anyRequest().permitAll()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
