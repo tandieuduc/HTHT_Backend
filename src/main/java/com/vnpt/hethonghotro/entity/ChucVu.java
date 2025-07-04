@@ -1,16 +1,18 @@
 package com.vnpt.hethonghotro.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "chuc_vu")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChucVu {
     @Id
     @Column(length = 36)
     private String id;
     private String name;
-    @Column(name = "is_deleted")
-    private boolean isDeleted;
+    @Column(name = "state")
+    private boolean state;
 }
